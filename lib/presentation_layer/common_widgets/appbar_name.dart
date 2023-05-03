@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-Widget appbarName() {
+Widget appbarName({String name = 'Wallpaper' }) {
   return RichText(
     text: TextSpan(
-      text: 'WallPaper',
+      text: name,
       style: const TextStyle(fontSize: 28, color: Colors.black),
       children: <TextSpan>[
         TextSpan(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/search_wallpaper_list.dart';
+
+import './search_wallpaper_list.dart';
 
 class CategerieTile extends StatelessWidget {
   const CategerieTile({Key? key, required this.imageUrl, required this.title})
@@ -13,9 +14,7 @@ class CategerieTile extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute<void>(
-          builder: (context) => SearchWallPaperList(
-            query: title,
-          ),
+          builder: (context) => SearchWallPaperList(query: title),
         ),
       ),
       child: Stack(
@@ -41,9 +40,9 @@ class CategerieTile extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
+                  color: Colors.white
                 ),
               ),
             ),

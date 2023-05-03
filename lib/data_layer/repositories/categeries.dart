@@ -1,4 +1,4 @@
-import 'package:wallpaper_store/models/categerious_model.dart';
+import 'package:wallpaper_store/data_layer/models/categerious_model.dart';
 
 List<CategeriousModel> get getCategerious {
   List<CategeriousModel> categerious = [];
