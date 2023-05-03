@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import './data/wallpapers.dart';
-import './screens/home_screen.dart';
+import './bloc_layer/bloc/wallpaper_bloc.dart';
+import './presentation_layer/screens/home_screen/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +13,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => WallPaper(),
+    return BlocProvider(
+      create: (context) => WallpaperBloc()..add(FindTrendWallpaper()),
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.white,
+          textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+          )),
         ),
-      ],
-      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'WallPaper_Store',
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

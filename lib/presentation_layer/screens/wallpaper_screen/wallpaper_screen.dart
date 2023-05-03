@@ -19,33 +19,21 @@ class WallPaperScreen extends StatelessWidget {
           alignment: WrapAlignment.center,
           children: [
             TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
               child: const Text('SET AS HOME SCREEN'),
               onPressed: () => setWallPaper(ctx, imageUrl, 1),
             ),
             const Divider(),
             TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
               child: const Text('SET AS LOCK SCREEN'),
               onPressed: () => setWallPaper(ctx, imageUrl, 2),
             ),
             const Divider(),
             TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
               child: const Text('SET AS HOME AND LOCK SCREEN'),
               onPressed: () => setWallPaper(ctx, imageUrl, 3),
             ),
             const Divider(),
             TextButton(
-              style: TextButton.styleFrom(
-                primary: Colors.white,
-              ),
               child: const Text('CENCEL'),
               onPressed: () => Navigator.pop(ctx),
             ),
@@ -112,7 +100,7 @@ class WallPaperScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black12,
+                backgroundColor: Colors.transparent,
                 padding: const EdgeInsets.all(4),
                 textStyle: const TextStyle(
                   fontSize: 20,
