@@ -2,32 +2,28 @@ part of 'wallpaper_bloc.dart';
 
 @immutable
 abstract class WallpaperState {
-  final List<WallPaperModel> treandList;
-  final List<WallPaperModel> searchdList;
-
-  const WallpaperState({required this.treandList, required this.searchdList});
+  const WallpaperState();
 }
 
 class FindWallpaperLoadingState extends WallpaperState {
-  const FindWallpaperLoadingState({required List<WallPaperModel> list, required List<WallPaperModel> search}) : super(treandList: list, searchdList: search);
+  const FindWallpaperLoadingState();
 }
 
 class FindWallpaperSuccessState extends WallpaperState{
-  const FindWallpaperSuccessState({required List<WallPaperModel> list, required List<WallPaperModel> search}) : super(treandList: list, searchdList: search);
+  final List<WallPaperModel> list;
+  const FindWallpaperSuccessState(this.list);
 }
 
-class FindWallpaperErrorState extends WallpaperState{
-  const FindWallpaperErrorState({required List<WallPaperModel> list, required List<WallPaperModel> search}) : super(treandList: list, searchdList: search);
+class WallpaperErrorState extends WallpaperState{
+  final String error;
+  const WallpaperErrorState(this.error);
 }
 
 class SearchWallpaperLoadingState extends WallpaperState {
-  const SearchWallpaperLoadingState({required List<WallPaperModel> treandList, required List<WallPaperModel> searchdList}) : super(treandList: treandList, searchdList: searchdList);
+  const SearchWallpaperLoadingState();
 }
 
 class SearchWallpaperSuccessState extends WallpaperState {
-  const SearchWallpaperSuccessState({required List<WallPaperModel> treandList, required List<WallPaperModel> searchdList}) : super(treandList: treandList, searchdList: searchdList);
-}
-
-class SearchWallpaperErrorState extends WallpaperState {
-  const SearchWallpaperErrorState({required List<WallPaperModel> treandList, required List<WallPaperModel> searchdList}) : super(treandList: treandList, searchdList: searchdList);
+  final List<WallPaperModel> list;
+  const SearchWallpaperSuccessState(this.list);
 }

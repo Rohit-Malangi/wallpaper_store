@@ -25,7 +25,8 @@ class SearchWallPaperList extends StatelessWidget {
       body: BlocBuilder<WallpaperBloc, WallpaperState>(
         builder: (context, state) {
           if (state is SearchWallpaperSuccessState) {
-            if (state.searchdList.isEmpty) {
+            final list = state.list;
+            if (list.isEmpty) {
               return const Center(
                 child: Text('Wallpaper not found for this search.'),
               );
@@ -40,21 +41,21 @@ class SearchWallPaperList extends StatelessWidget {
                   mainAxisSpacing: 6.0,
                   crossAxisSpacing: 6.0,
                 ),
-                itemCount: state.searchdList.length,
+                itemCount: list.length,
                 itemBuilder: ((ctx, index) {
                   return GridTile(
                     child: InkResponse(
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                          builder: (context) => WallPaperScreen(
-                              imageUrl: state.searchdList[index].imageUrl),
+                          builder: (context) =>
+                              WallPaperScreen(imageUrl: list[index].imageUrl),
                         ),
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
-                          state.searchdList[index].imageUrl,
+                          list[index].imageUrl,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -63,16 +64,22 @@ class SearchWallPaperList extends StatelessWidget {
                 }),
               );
             }
-          } else if (state is FindWallpaperLoadingState ||
+          }
+          if (state is FindWallpaperLoadingState ||
               state is SearchWallpaperLoadingState) {
             return const Center(
               child: Text('Loading...'),
             );
-          } else {
-            return const Center(
-              child: Text('Unknown Exception Occured...'),
+          }
+          if (state is WallpaperErrorState) {
+            final error = state.error;
+            return Center(
+              child: Text(error),
             );
           }
+          return const Center(
+            child: Text('Error Occured'),
+          );
         },
       ),
     );

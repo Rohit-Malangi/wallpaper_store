@@ -8,23 +8,22 @@ part 'wallpaper_event.dart';
 part 'wallpaper_state.dart';
 
 class WallpaperBloc extends Bloc<WallpaperEvent, WallpaperState> {
-  WallpaperBloc() : super(const FindWallpaperLoadingState(list: [], search: [])) {
+  WallpaperBloc() : super(const FindWallpaperLoadingState()) {
     on<FindTrendWallpaper>((event, emit) async {
       try {
-        await WallPaper().getTreandWallpeper.then((value) => emit(
-            FindWallpaperSuccessState(list: value, search: state.searchdList)));
+        await WallPaper().getTreandWallpeper.then((value) => emit(FindWallpaperSuccessState(value)));
       } catch (e) {
-        emit(const FindWallpaperErrorState(list: [], search: []));
+        emit(WallpaperErrorState(e.toString()));
       }
     });
 
     on<FindSearchWallpaper>((event, emit) async {
-      emit(SearchWallpaperLoadingState(treandList: state.treandList, searchdList: state.searchdList));
+      emit(const SearchWallpaperLoadingState());
       try {
        await WallPaper().getSearchWallpaper(event.seachtext).then((value) => emit(
-            SearchWallpaperSuccessState(treandList: state.treandList, searchdList: value)));
+            SearchWallpaperSuccessState(value)));
       } catch (e) {
-        emit(const SearchWallpaperErrorState(treandList: [], searchdList: []));
+        emit(WallpaperErrorState(e.toString()));
       }
     });
   }
